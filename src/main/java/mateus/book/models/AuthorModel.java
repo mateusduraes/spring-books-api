@@ -1,12 +1,13 @@
 package mateus.book.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,4 +24,7 @@ public class AuthorModel implements Serializable {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<BookModel> books = new ArrayList<>();
 }
