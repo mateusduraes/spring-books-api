@@ -1,6 +1,5 @@
 package mateus.book.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,8 +24,6 @@ public class BookModel implements Serializable {
     @Column(nullable = false)
     private int year;
 
-    @ManyToOne(optional=false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="author_id")
-    @JsonBackReference
     private AuthorModel author;
 }
